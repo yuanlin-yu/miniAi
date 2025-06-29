@@ -1,0 +1,89 @@
+<!--index.wxml-->
+  <view class="container">
+	<button 
+	class="left-top-btn" 
+	style="width: fit-content;"
+	bindtap="toggleMenu"
+	>
+    <iconfont name="menu" color="black" size="50"/> 
+	</button>
+	<button 
+	class="left-top-btn" 
+	style="width: fit-content;left: 80rpx; top: 94rpx"
+	bindtap="startNewChat"
+	>
+    <iconfont name="a-AddChat" color="black" size="45"/> 
+	</button>
+	<view class="menu-container" style="width: {{ isOpenMenu ?  '500rpx' : '0px'}}">
+		<view class="menu-header-bar">
+			<button class="close-menu" style="width: fit-content;" bindtap="toggleMenu">
+				<iconfont name="back" color="black" size="50"/> 
+			</button>
+			<text style="width: 55%; text-align: center;">历史</text>
+			<button class="close-menu" style="width: fit-content;" bindtap="cleanMemory">
+				<iconfont name="app_clean" color="black" size="50"/> 
+			</button>
+		</view>
+		<view class="memory-list" wx:for="{{ memoryAarray }}" wx:key="index" >
+			<view 
+			class="memory-item ellipsis" 
+			bindtap="recallChat" 
+      data-item="{{ {chatId: item.chatId, data: item.data.data} }}"
+			style="background-color: {{ item.chatId === currentChatId ? '#0084ff' : 'default' }};"
+			>
+				<text style="color: {{ item.chatId === currentChatId ? 'white' : 'black' }};">{{ item.data.data[1].content || '新建聊天'}}</text>
+			</view>
+		</view>
+	</view>
+	<view class="curtain" bindtap="toggleMenu" style="display: {{  isOpenMenu ?  'block' : 'none' }};"></view>
+	<view class="messages-container">
+	  <view class="welcome" wx:if="{{ messages.length <= 1 }}">
+			<text style="font-weight: bold; color: black; font-size: 70rpx;">欢迎使用 miniAI !</text>
+			<text>开源本地化运行AI Agent框架</text>
+		</view>
+		<scroll-view 
+		class="messages-scroll-view"
+		scroll-into-view="{{scrollToViewId}}"
+		scroll-into-view-alignment="end" 
+		scroll-y
+		scroll-with-animation
+		>
+			<view class="messages" wx:for="{{ messages }}" wx:key="index" >
+				<view wx:if="{{ item.role !== 'system' && item.content !== null && item.role !== 'tool'}}" class="{{item.role === 'user' ? 'user-message' : 'assistant-message'}}">
+					<text style="font-weight: bold;"  wx:if="{{ item.role === 'assistant' }}">miniAI</text>
+					<text class="message-content">{{ item.content }}</text>
+					<view id="msg-{{index}}"></view>
+				</view>
+				<view wx:if="{{item.role === 'tool'}}" class="tool-message">
+					<text class="message-content">调用工具: {{ item.name }}</text>
+					<text class="message-content">输出结果: {{ item.content }}</text>
+				</view>
+			</view>
+		</scroll-view>	
+	</view>  
+	<view 
+	class="input-area" 
+	style="bottom: {{ keyboardHeight > 0 ?  keyboardHeight : 36}}px; "
+	>
+		<textarea 
+		class="msgInput"  
+		adjust-position="{{false}}"
+		cursor-spacing="20"
+		bindblur="onBlur"
+		bindinput="onTextChange" 
+		value="{{ inputMsg }}" 
+		placeholder="请输入..." 
+		bindconfirm="send"
+		confirm-type="done"
+		auto-height="true"
+		>
+		 <button 
+		 class="sendBtn" 
+		 style="width: fit-content; background-color: {{ inputMsg.length > 0 ? '#0084ff' : 'default' }};"
+		 bindtap="send"		 
+		 >
+		 	<iconfont name="Send" color="{{ inputMsg.length > 0 ? 'white' : 'gray' }}" size="45"/>
+		 </button>
+		</textarea>
+	</view>
+  </view>

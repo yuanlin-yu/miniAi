@@ -1,0 +1,180 @@
+/**index.wxss**/
+page {
+  height: 100vh;
+  display: flex;
+	flex-direction: column;
+}
+
+.welcome {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 70%;
+}
+
+.welcome text{
+  font-size: 50rpx;
+  color: gray;
+  margin: 16rpx;
+}
+
+.messages {
+  margin: 10px;
+  word-wrap: break-word;
+}
+.messages view {
+  display: flex;
+  flex-direction: column;
+}
+.messages text {
+  margin: 0 10rpx;
+}
+
+.user-message {
+  background-color: #0084ff;
+  padding: 16rpx;
+  border-radius: 16rpx 16rpx 0 16rpx;
+  color:white;
+  width: fit-content;
+  margin-left: auto;
+}
+
+.assistant-message .message-content {
+  background-color: white;
+  width: fit-content;
+  padding: 16rpx;
+  border-radius: 0 16rpx 16rpx 16rpx;
+  margin: 10rpx;
+}
+.tool-message {
+  box-sizing: border-box;
+  border-radius: 16rpx;
+  border: 1px solid #0084ff;
+  width: fit-content;
+  max-width: 100%;
+  max-height: 250rpx;
+  padding: 16rpx;
+  margin: 10rpx 16rpx;
+  overflow-y: auto;
+}
+.messages-container {
+  /* border: 1px solid gray; */
+  box-sizing: border-box;
+  height: calc(100vh - 360rpx);
+  width: 100%;
+  overflow: auto;
+  border-radius: 8rpx;
+  background-color: rgb(240,240,240);
+  margin-top: 180rpx;
+  padding: 0 16rpx;
+}
+.messages-scroll-view {
+  height: 100%;
+}
+
+.input-area {
+  /* border: 1px solid gray; */
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 100rpx;
+  transition: bottom 0.3s ease;
+  /* padding:  10rpx; */
+  background-color: #F0F0F0;
+}
+.msgInput {
+  box-sizing: border-box;
+  width: calc(100% - 90rpx);
+	border-radius: 16rpx;
+	overflow: auto;
+  padding: 10rpx 16rpx;
+  padding-right: 80rpx;
+	background-color: white;
+	left: 50%;
+	transform: translateX(-50%);
+  box-shadow: 0 0 25rpx 1rpx rgb(200,200,200);
+  z-index: 50;
+  margin: 16rpx 0;
+  position: relative;
+}
+.sendBtn {
+  padding: 8rpx;
+  margin: 0;
+  position: absolute;
+  right: 12rpx;
+  bottom: 12rpx;
+}
+.sendBtn:active {
+  background-color: blue;
+}
+
+.left-top-btn {
+  position: absolute;
+  left: 16rpx;
+  top: 90rpx;
+  width: fit-content;
+  padding: 10rpx;
+  background-color: transparent;
+}
+
+.menu-container {
+  z-index: 150;
+  position: absolute;
+  height: calc(100vh - 180rpx);
+  width: 500rpx;
+  max-width: 80%;
+  margin-top: 100rpx;
+  border-radius: 16rpx;
+  /* box-shadow: 0 0 25rpx 1rpx rgb(200,200,200); */
+  background-color: white;
+  transition: width 0.3s ease-in-out;
+  overflow: hidden;
+}
+
+.close-menu {
+  margin: 16rpx;
+  padding: 16rpx;
+}
+
+.menu-header-bar {
+  display: flex; 
+  flex-direction: row; 
+  justify-content: flex-start;
+  align-items: center;
+  width: 100%;
+  font-weight: bold;
+}
+
+.curtain { 
+  position: absolute;
+  width: 100vh;
+  height: 100vh;
+  background-color: rgba(0,0,0,0.5);
+  z-index: 100;
+}
+
+.memory-list {
+  display:flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  color: black;
+  overflow: auto;
+}
+
+.memory-item {
+  /* border: 1px solid black; */
+  margin: 8rpx 16rpx;
+  width: fit-content;
+  max-width: 100%;
+  background-color: rgb(240,240,240);
+  border-radius: 8rpx;
+  padding: 16rpx;
+}
+
+.ellipsis {
+  white-space: nowrap;      /* 禁止换行 */
+  overflow: hidden;         /* 隐藏溢出内容 */
+  text-overflow: ellipsis;  /* 显示省略号 */
+  width: 100%;             /* 必须设置宽度 */
+}

@@ -1,0 +1,10 @@
+/**app.wxss**/
+.container {
+  height: 100%;
+  width: 100%;
+  box-sizing: border-box;
+  background-color: #F0F0F0;
+  position: absolute;
+  z-index: 100;
+  /* padding: 0 10rpx; */
+} 
