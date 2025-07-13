@@ -4,7 +4,7 @@ export const LLM_API_KEY = '';
 export const LLM_MODEL = 'qwen-plus-latest';
 
 // export const LLM_BASEURL = 'https://api.deepseek.com/chat/completions';
-// export const LLM_API_KEY = 'sk-9fea3145e2474f31aa08d0946024a695';
+// export const LLM_API_KEY = '';
 // export const LLM_MODEL = 'deepseek-chat';  // deepseek-chat: DeepSeek-V3-0324, deepseek-reasoner: DeepSeek-R1-0528
 
 //rag
