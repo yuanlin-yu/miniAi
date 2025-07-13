@@ -1,6 +1,6 @@
 // index.js
-import { agent } from '../../utils/miniAI/index';
-import {  initRagDB, generateVectorChunksArray, cleanChunks } from '../../utils/miniAI/rag/rag';
+import { agent } from '../../utils/miniAi/index';
+import {  initRagDB, generateVectorChunksArray, cleanChunks } from '../../utils/miniAi/rag/rag';
 import { exampleParagraph } from './data';
 const { useChat, messagesCallback, newChat, useMemory, recallMemory } = agent;
 
