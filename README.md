@@ -1,6 +1,6 @@
-# miniAI
+# miniAi
 
-miniAI是一个本地化运行的微信小程序AI Agent开发框架，让开发者无需搭建后端服务即可实现功能完整的AI应用。框架提供大模型接入、工具调用、RAG和记忆功能等核心能力，同时提供简单的对话界面，便于测试或修改使用。
+miniAi是一个本地化运行的微信小程序AI Agent开发框架，让开发者无需搭建后端服务即可实现功能完整的AI应用。框架提供大模型接入、工具调用、RAG和记忆功能等核心能力，同时提供简单的对话界面，便于测试或修改使用。
 
 ![展示动画](https://github.com/yuanlin-yu/miniAi/blob/main/assets/miniAi.gif)
 
@@ -24,17 +24,17 @@ miniAI是一个本地化运行的微信小程序AI Agent开发框架，让开发
 
 **1. 克隆本仓库链接**:
 ```
-git clone https://github.com/yuanlin-yu/miniAI.git
+git clone https://github.com/yuanlin-yu/miniAi.git
 ```
 或从本页面下载压缩包后解压。
 
 **2. 设置环境变量**:
 1、修改项目根目录下project.congfig.json中的`appid`, 输入框架使用者的`appid`；
-2、修改`utils\miniAI`目录下的`env.js`文件，输入大模型以及embedding模型的相关参数（base url, api key, model name等）；
+2、修改`utils\miniAi`目录下的`env.js`文件，输入大模型以及embedding模型的相关参数（base url, api key, model name等）；
 
 **3. 运行项目**:
 1、使用微信开发者工具导入项目目录即可打开项目；
-2、通过`utils\miniAI`目录下的`index.js`配置agent（按需要进行agent大模型、工具及记忆功能设置），通过`tools\tools.js`进行相关工具函数定义，已提供相关例子；
+2、通过`utils\miniAi`目录下的`index.js`配置agent（按需要进行agent大模型、工具及记忆功能设置），通过`tools\tools.js`进行相关工具函数定义，已提供相关例子；
 3、通过预览进行后续项目运行及调试，项目已提供简单的聊天交互界面；
 
 ## :bulb: 主要函数介绍
