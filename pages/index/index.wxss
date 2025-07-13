@@ -102,8 +102,8 @@ page {
   padding: 8rpx;
   margin: 0;
   position: absolute;
-  right: 12rpx;
-  bottom: 12rpx;
+  right: 10rpx;
+  bottom: 10rpx;
 }
 .sendBtn:active {
   background-color: blue;

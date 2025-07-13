@@ -40,7 +40,12 @@ export const completion = (inputMsg, temperature, tools) => {
               console.log(functionRes)
               messages.push(
                 { role: "assistant", content: null, tool_calls: outputMsg.tool_calls },
-                { role: 'tool', name: functionName, content: JSON.stringify(functionRes) }
+                { 
+                  role: 'tool', 
+                  name: functionName,   // qwen格式需要
+                  tool_call_id: outputMsg.tool_calls[0].id,  // deepseek格式需要
+                  content: JSON.stringify(functionRes) 
+                }
               );
               completion(messages, temperature, tools)
               .then(resolve)  // 将递归结果传递给外部 resolve
@@ -48,9 +53,15 @@ export const completion = (inputMsg, temperature, tools) => {
             });
           } else {
             const functionRes = targetFunction.function(...Object.values(params));
+            console.log(outputMsg.tool_calls[0].id);
             messages.push(
               { role: "assistant", content: null, tool_calls: outputMsg.tool_calls },
-              { role: 'tool', name: functionName, content: JSON.stringify(functionRes) }
+              { 
+                role: 'tool', 
+                name: functionName,   // qwen格式需要
+                tool_call_id: outputMsg.tool_calls[0].id,  // deepseek格式需要
+                content: JSON.stringify(functionRes) 
+              }
             );
             completion(messages, temperature, tools)
             .then(resolve)  // 将递归结果传递给外部 resolve
@@ -107,7 +118,7 @@ export const stream = (inputMsg, temperature, tools, onProgress) => {
       const chunkStr = decodeArrayBuffer(response.data);
       const dataStrings = chunkStr.split("data:").slice(1);
       const data = JSON.parse(dataStrings[0].trim());
-      if(data.choices?.[0]?.delta?.tool_calls) {
+      if(data.choices?.[0]?.delta?.tool_calls || chunkStr.includes('tool_calls')) {
         dataStrings.forEach(string => {
           const json = JSON.parse(string.trim());
           if(json.choices?.[0]?.delta?.tool_calls) {
@@ -119,7 +130,12 @@ export const stream = (inputMsg, temperature, tools, onProgress) => {
               targetFunction.function(...Object.values(toolInput.arguments)).then(functionRes => {
                 messages.push(
                   { role: "assistant", content: null, tool_calls: toolCalls },
-                  { role: 'tool', name: toolInput.name, content: JSON.stringify(functionRes) }
+                  { 
+                    role: 'tool', 
+                    name: toolInput.name, 
+                    tool_call_id: toolCalls[0].id,  // deepseek格式需要
+                    content: JSON.stringify(functionRes) 
+                  }
                 );
                 stream(messages, temperature, tools, onProgress);
               });            
@@ -127,13 +143,18 @@ export const stream = (inputMsg, temperature, tools, onProgress) => {
               const functionRes = targetFunction.function(...Object.values(toolInput.arguments));
               messages.push(
                 { role: "assistant", content: null, tool_calls: toolCalls },
-                { role: 'tool', name: toolInput.name, content: JSON.stringify(functionRes) }
+                { 
+                  role: 'tool', 
+                  name: toolInput.name, 
+                  tool_call_id: toolCalls[0].id,  // deepseek格式需要
+                  content: JSON.stringify(functionRes) 
+                }
               );
               stream(messages, temperature, tools, onProgress);
             }
           }
         })       
-      } else if (data.choices?.[0]?.delta?.content) {
+      } else if (data.choices?.[0]?.delta?.content || data.choices?.[0]?.delta?.role) {
         const result = extractContent(chunkStr);
         streamChunk += result;
         if (streaming) {

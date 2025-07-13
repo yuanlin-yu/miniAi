@@ -2,7 +2,7 @@ const config = require('../env')
 const VectorDB = require('./vector-db');
 var vectorDB = null;
 
-export const initDB = async (fileName) => {
+export const initRagDB = async (fileName) => {
 	vectorDB = new VectorDB({ dim: config.EMBEDDER_DIMENSION, fileName: fileName});
 	wx.showLoading({ title: '数据加载中' });
 	await vectorDB.load();

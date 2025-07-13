@@ -13,6 +13,5 @@
   "sitemapLocation": "sitemap.json",
   "lazyCodeLoading": "requiredComponents",
   "usingComponents": {
-    "iconfont": "/iconfont/iconfont"
   }
 }

@@ -1,8 +1,8 @@
 // index.js
 import { agent } from '../../utils/miniAI/index';
-import {  initDB, generateVectorChunksArray, cleanChunks } from '../../utils/miniAI/rag/rag';
+import {  initRagDB, generateVectorChunksArray, cleanChunks } from '../../utils/miniAI/rag/rag';
 import { exampleParagraph } from './data';
-const { useChat, useMemory, recallMemory, bindUpdateMessages, newChat } = agent;
+const { useChat, messagesCallback, newChat, useMemory, recallMemory } = agent;
 
 Page({
   data: {
@@ -21,7 +21,7 @@ Page({
     });
     await this.addMemory(this.data.currentChatId);
     // 绑定messages更新
-    bindUpdateMessages((messages) => {
+    messagesCallback((messages) => {
       this.setData({ messages });
       setTimeout(() => {
         this.setData({
@@ -31,7 +31,7 @@ Page({
       }, 0);
     });
     // 初始化rag
-    await initDB('demo');
+    await initRagDB('demo');
     await cleanChunks();
     await generateVectorChunksArray(exampleParagraph, 1000, 200);
     // 其他

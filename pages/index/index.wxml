@@ -5,23 +5,23 @@
 	style="width: fit-content;"
 	bindtap="toggleMenu"
 	>
-    <iconfont name="menu" color="black" size="50"/> 
+	<image  src="../../assets/icons/menu.png" style="height: 50rpx; width: 50rpx;  margin: 4rpx;"/>
 	</button>
 	<button 
 	class="left-top-btn" 
 	style="width: fit-content;left: 80rpx; top: 94rpx"
 	bindtap="startNewChat"
 	>
-    <iconfont name="a-AddChat" color="black" size="45"/> 
+	<image  src="../../assets/icons/Add Chat.png" style="height: 45rpx; width: 45rpx;  margin: 4rpx;"/>
 	</button>
 	<view class="menu-container" style="width: {{ isOpenMenu ?  '500rpx' : '0px'}}">
 		<view class="menu-header-bar">
 			<button class="close-menu" style="width: fit-content;" bindtap="toggleMenu">
-				<iconfont name="back" color="black" size="50"/> 
+				<image  src="../../assets/icons/back.png" style="height: 45rpx; width: 45rpx;  margin: 0 -4rpx -12rpx 2rpx;"/>
 			</button>
 			<text style="width: 55%; text-align: center;">历史</text>
 			<button class="close-menu" style="width: fit-content;" bindtap="cleanMemory">
-				<iconfont name="app_clean" color="black" size="50"/> 
+				<image  src="../../assets/icons/app_clean.png" style="height: 45rpx; width: 45rpx;  margin: 0 0 -12rpx 2rpx;"/>
 			</button>
 		</view>
 		<view class="memory-list" wx:for="{{ memoryAarray }}" wx:key="index" >
@@ -82,7 +82,7 @@
 		 style="width: fit-content; background-color: {{ inputMsg.length > 0 ? '#0084ff' : 'default' }};"
 		 bindtap="send"		 
 		 >
-		 	<iconfont name="Send" color="{{ inputMsg.length > 0 ? 'white' : 'gray' }}" size="45"/>
+			 <image  src="{{ inputMsg.length > 0 ?  '../../assets/icons/Send_white.png' : '../../assets/icons/Send_gray.png'}}" style="height: 45rpx; width: 45rpx;  margin: 2rpx 4rpx -8rpx 4rpx;"/>
 		 </button>
 		</textarea>
 	</view>

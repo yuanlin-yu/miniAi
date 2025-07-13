@@ -10,7 +10,7 @@ class Agent {
 		this.memory = options.memory ? true : false;
 	}
 	
-	bindUpdateMessages = (callback) => {
+	messagesCallback = (callback) => {
     this.updateCallback = callback;
 	};
 	
@@ -44,6 +44,7 @@ class Agent {
 					if (this.updateCallback) {
 						this.updateCallback(this.messages); // 触发页面更新
 					}
+					return updatedMessages
 				});
       } else {
 				result = await completion(this.messages, this.temperature, this.tools);
@@ -51,6 +52,7 @@ class Agent {
 				if (this.updateCallback) {
 					this.updateCallback(this.messages); // 触发页面更新
 				}
+				return result
 			}
     } catch (error) {
       console.error('Chat error:', error);
