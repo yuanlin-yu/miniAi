@@ -2,7 +2,7 @@
 
 miniAI是一个本地化运行的微信小程序AI Agent开发框架，让开发者无需搭建后端服务即可实现功能完整的AI应用。框架提供大模型接入、工具调用、RAG和记忆功能等核心能力，同时提供简单的对话界面，便于测试或修改使用。
 
-![展示动画](https://github.com/yuanlin-yu/miniAi/blob/main/assets/miniAI.mp4)
+![展示动画](https://github.com/yuanlin-yu/miniAi/blob/main/assets/miniAi.gif)
 
 ## :sparkles: 核心优势
 
